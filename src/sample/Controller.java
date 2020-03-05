@@ -266,81 +266,37 @@ public class Controller {
     @FXML
     public void onClickMethodSub1() {
         boolean flag = true;
-        if (date.isVisible()) if (date.getText().length() == 0) flag = false;
-        if (year.isVisible()) if (year.getText().length() == 0) flag = false;
-        if (nameText.isVisible()) if (nameText.getText().length() == 0) flag = false;
-        if (surnameText.isVisible()) if (surnameText.getText().length() == 0) flag = false;
-        if (email.isVisible()) if (email.getText().length() == 0) flag = false;
-        if (house.isVisible()) if (house.getText().length() == 0) flag = false;
-        if (city.isVisible()) if (city.getText().length() == 0) flag = false;
-        if (street.isVisible()) if (street.getText().length() == 0) flag = false;
-
+        flag=checkMain(flag);
         Person pers = null;
         if(positionList.getValue()!=null) {
             switch (positionList.getValue().toString()) {
                 case ("Manager"):
-                    if (manSal.isVisible()) if (manSal.getText().length() == 0) flag = false;
-                    if (manExp.isVisible()) if (manExp.getText().length() == 0) flag = false;
-                    if (bonus.isVisible()) if (bonus.getText().length() == 0) flag = false;
-                    if (manEdu.isVisible()) if (manEdu.getValue() == null) flag = false;
-                    if (!flag) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input");
-                        alert.show();
-                    } else {
+                    flag=checkManager(flag);
+                    if (flag) {
                         pers = new Manager(idPerson++, new Birth(Integer.valueOf(date.getText()), Birth.Month.valueOf(month.getValue().toString()), Integer.valueOf(year.getText())), nameText.getText(), surnameText.getText(), Person.Sex.valueOf(gender.getValue().toString()), email.getText(), new Adress(city.getText(), street.getText(), Integer.valueOf(house.getText())), Person.Position.Manager, Double.valueOf(manSal.getText()), Integer.valueOf(manExp.getText()), Employee.Education.valueOf(manEdu.getValue().toString()), Double.valueOf(bonus.getText()));
                     }
                     break;
                 case ("Student"):
-                    if (univers.isVisible()) if (univers.getText().length() == 0) flag = false;
-                    if (facult.isVisible()) if (facult.getText().length() == 0) flag = false;
-                    if (spec.isVisible()) if (spec.getText().length() == 0) flag = false;
-                    if (course.isVisible()) if (course.getText().length() == 0) flag = false;
-                    if (group.isVisible()) if (group.getText().length() == 0) flag = false;
-                    if (!flag) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input");
-                        alert.show();
-                    } else {
+                    flag=checkStudent(flag);
+                    if (flag) {
                         pers = new Student(idPerson++, new Birth(Integer.valueOf(date.getText()), Birth.Month.valueOf(month.getValue().toString()), Integer.valueOf(year.getText())), nameText.getText(), surnameText.getText(), Person.Sex.valueOf(gender.getValue().toString()), email.getText(), new Adress(city.getText(), street.getText(), Integer.valueOf(house.getText())), Person.Position.Student, univers.getText(), facult.getText(), spec.getText(), Integer.valueOf(course.getText()), group.getText());
                     }
                     break;
                 case ("Programmer"):
-                    if (progSal.isVisible()) if (progSal.getText().length() == 0) flag = false;
-                    if (progExp.isVisible()) if (progExp.getText().length() == 0) flag = false;
-                    if (progProj.isVisible()) if (progProj.getText().length() == 0) flag = false;
-                    if (progEdu.isVisible()) if (progEdu.getValue() == null) flag = false;
-                    if (progCat.isVisible()) if (progCat.getValue() == null) flag = false;
-                    if (progSkills.isVisible()) if (progSkills.getValue() == null) flag = false;
-                    if (!flag) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input");
-                        alert.show();
-                    } else {
+                    flag=checkProgrammer(flag);
+                    if (flag) {
                         pers = new Programmer(idPerson++, new Birth(Integer.valueOf(date.getText()), Birth.Month.valueOf(month.getValue().toString()), Integer.valueOf(year.getText())), nameText.getText(), surnameText.getText(), Person.Sex.valueOf(gender.getValue().toString()), email.getText(), new Adress(city.getText(), street.getText(), Integer.valueOf(house.getText())), Person.Position.Programmer, Double.valueOf(progSal.getText()), Integer.valueOf(progExp.getText()), Employee.Education.valueOf(progEdu.getValue().toString()), progProj.getText(), Programmer.Category.valueOf(progCat.getValue().toString()), Programmer.ProgSkills.valueOf(progSkills.getValue().toString()));
                     }
                     break;
                 case ("Tester"):
-                    if (testSal.isVisible()) if (testSal.getText().length() == 0) flag = false;
-                    if (testExp.isVisible()) if (testExp.getText().length() == 0) flag = false;
-                    if (testProj.isVisible()) if (testProj.getText().length() == 0) flag = false;
-                    if (testEdu.isVisible()) if (testEdu.getValue() == null) flag = false;
-                    if (testType.isVisible()) if (testType.getValue() == null) flag = false;
-                    if (!flag) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input");
-                        alert.show();
-                    } else {
+                    flag=checkTester(flag);
+                    if (flag) {
                         pers = new Tester(idPerson++, new Birth(Integer.valueOf(date.getText()), Birth.Month.valueOf(month.getValue().toString()), Integer.valueOf(year.getText())), nameText.getText(), surnameText.getText(), Person.Sex.valueOf(gender.getValue().toString()), email.getText(), new Adress(city.getText(), street.getText(), Integer.valueOf(house.getText())), Person.Position.Tester, Double.valueOf(testSal.getText()), Integer.valueOf(testExp.getText()), Employee.Education.valueOf(testEdu.getValue().toString()), testProj.getText(), Tester.TestType.valueOf(testType.getValue().toString()));
                     }
                     break;
                 case ("Designer"):
-                    if (dezSal.isVisible()) if (dezSal.getText().length() == 0) flag = false;
-                    if (dezExp.isVisible()) if (dezExp.getText().length() == 0) flag = false;
-                    if (dezProj.isVisible()) if (dezProj.getText().length() == 0) flag = false;
-                    if (dezEdu.isVisible()) if (dezEdu.getValue() == null) flag = false;
-                    if (dezSkills.isVisible()) if (dezSkills.getValue() == null) flag = false;
-                    if (dezType.isVisible()) if (dezType.getValue() == null) flag = false;
-                    if (!flag) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input");
-                        alert.show();
-                    } else {
+                    flag=checkDesigner(flag);
+                    if (flag) {
                         pers = new Designer(idPerson++, new Birth(Integer.valueOf(date.getText()), Birth.Month.valueOf(month.getValue().toString()), Integer.valueOf(year.getText())), nameText.getText(), surnameText.getText(), Person.Sex.valueOf(gender.getValue().toString()), email.getText(), new Adress(city.getText(), street.getText(), Integer.valueOf(house.getText())), Person.Position.Designer, Double.valueOf(dezSal.getText()), Integer.valueOf(dezExp.getText()), Employee.Education.valueOf(dezEdu.getValue().toString()), dezProj.getText(), Designer.DezSkills.valueOf(dezSkills.getValue().toString()), Designer.DezType.valueOf(dezType.getValue().toString()));
                     }
                     break;
@@ -351,37 +307,23 @@ public class Controller {
                 personData.add(pers);
                 personTable.getItems().add(pers);
             }
+            else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input");
+                alert.show();
+            }
         }
     }
 
     @FXML
     public void onClickMethodSub2() {
         boolean flag = true;
-        if (date.isVisible()) if (date.getText().length() == 0) flag = false;
-        if (year.isVisible()) if (year.getText().length() == 0) flag = false;
-        if (nameText.isVisible()) if (nameText.getText().length() == 0) flag = false;
-        if (surnameText.isVisible()) if (surnameText.getText().length() == 0) flag = false;
-        if (email.isVisible()) if (email.getText().length() == 0) flag = false;
-        if (house.isVisible()) if (house.getText().length() == 0) flag = false;
-        if (city.isVisible()) if (city.getText().length() == 0) flag = false;
-        if (street.isVisible()) if (street.getText().length() == 0) flag = false;
-        if (month.isVisible()) if (month.getValue() == null) flag = false;
-        if (gender.isVisible()) if (gender.getValue() == null) flag = false;
-        if (positionList.isVisible()) if (positionList.getValue() == null) flag = false;
-
-
+        flag=checkMain(flag);
         addPanel.setVisible(false);
         Person man = getPerson(idEdit);
         switch (man.getPosition().toString()) {
             case ("Manager"):
-                if (manSal.isVisible()) if (manSal.getText().length() == 0) flag = false;
-                if (manExp.isVisible()) if (manExp.getText().length() == 0) flag = false;
-                if (bonus.isVisible()) if (bonus.getText().length() == 0) flag = false;
-                if (manEdu.isVisible()) if (manEdu.getValue() == null) flag = false;
-                if (!flag) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input");
-                    alert.show();
-                }else{
+                flag=checkManager(flag);
+                if (flag) {
                 ((Manager) man).setDateOfBirth(new Birth(Integer.valueOf(date.getText()), Birth.Month.valueOf(month.getValue().toString()), Integer.valueOf(year.getText())));
                 ((Manager) man).setName(nameText.getText());
                 ((Manager) man).setSurname(surnameText.getText());
@@ -394,15 +336,8 @@ public class Controller {
                 ((Manager) man).setBonus(Double.valueOf(bonus.getText()));}
                 break;
             case ("Student"):
-                if (univers.isVisible()) if (univers.getText().length() == 0) flag = false;
-                if (facult.isVisible()) if (facult.getText().length() == 0) flag = false;
-                if (spec.isVisible()) if (spec.getText().length() == 0) flag = false;
-                if (course.isVisible()) if (course.getText().length() == 0) flag = false;
-                if (group.isVisible()) if (group.getText().length() == 0) flag = false;
-                if (!flag) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input");
-                    alert.show();
-                }else{
+                flag=checkStudent(flag);
+                if (flag) {
                 ((Student) man).setDateOfBirth(new Birth(Integer.valueOf(date.getText()), Birth.Month.valueOf(month.getValue().toString()), Integer.valueOf(year.getText())));
                 ((Student) man).setName(nameText.getText());
                 ((Student) man).setSurname(surnameText.getText());
@@ -416,16 +351,8 @@ public class Controller {
                 ((Student) man).setGroup(group.getText());}
                 break;
             case ("Programmer"):
-                if (progSal.isVisible()) if (progSal.getText().length() == 0) flag = false;
-                if (progExp.isVisible()) if (progExp.getText().length() == 0) flag = false;
-                if (progProj.isVisible()) if (progProj.getText().length() == 0) flag = false;
-                if (progEdu.isVisible()) if (progEdu.getValue() == null) flag = false;
-                if (progCat.isVisible()) if (progCat.getValue() == null) flag = false;
-                if (progSkills.isVisible()) if (progSkills.getValue() == null) flag = false;
-                if (!flag) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input");
-                    alert.show();
-                }else{
+                flag=checkProgrammer(flag);
+                if (flag) {
                 ((Programmer) man).setDateOfBirth(new Birth(Integer.valueOf(date.getText()), Birth.Month.valueOf(month.getValue().toString()), Integer.valueOf(year.getText())));
                 ((Programmer) man).setName(nameText.getText());
                 ((Programmer) man).setSurname(surnameText.getText());
@@ -440,15 +367,8 @@ public class Controller {
                 ((Programmer) man).setProgSkills(Programmer.ProgSkills.valueOf(progSkills.getValue().toString()));}
                 break;
             case ("Tester"):
-                if (testSal.isVisible()) if (testSal.getText().length() == 0) flag = false;
-                if (testExp.isVisible()) if (testExp.getText().length() == 0) flag = false;
-                if (testProj.isVisible()) if (testProj.getText().length() == 0) flag = false;
-                if (testEdu.isVisible()) if (testEdu.getValue() == null) flag = false;
-                if (testType.isVisible()) if (testType.getValue() == null) flag = false;
-                if (!flag) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input");
-                    alert.show();
-                }else{
+                flag=checkTester(flag);
+                if (flag) {
                 ((Tester) man).setDateOfBirth(new Birth(Integer.valueOf(date.getText()), Birth.Month.valueOf(month.getValue().toString()), Integer.valueOf(year.getText())));
                 ((Tester) man).setName(nameText.getText());
                 ((Tester) man).setSurname(surnameText.getText());
@@ -462,16 +382,8 @@ public class Controller {
                 ((Tester) man).setTestType(Tester.TestType.valueOf(testType.getValue().toString()));}
                 break;
             case ("Designer"):
-                if (dezSal.isVisible()) if (dezSal.getText().length() == 0) flag = false;
-                if (dezExp.isVisible()) if (dezExp.getText().length() == 0) flag = false;
-                if (dezProj.isVisible()) if (dezProj.getText().length() == 0) flag = false;
-                if (dezEdu.isVisible()) if (dezEdu.getValue() == null) flag = false;
-                if (dezSkills.isVisible()) if (dezSkills.getValue() == null) flag = false;
-                if (dezType.isVisible()) if (dezType.getValue() == null) flag = false;
-                if (!flag) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input");
-                    alert.show();
-                }else{
+               flag=checkDesigner(flag);
+                if (flag) {
                 ((Designer) man).setDateOfBirth(new Birth(Integer.valueOf(date.getText()), Birth.Month.valueOf(month.getValue().toString()), Integer.valueOf(year.getText())));
                 ((Designer) man).setName(nameText.getText());
                 ((Designer) man).setSurname(surnameText.getText());
@@ -486,8 +398,11 @@ public class Controller {
                 ((Designer) man).setDezType(Designer.DezType.valueOf(dezType.getValue().toString()));}
                 break;
         }
+        if (!flag) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input");
+            alert.show();
+        }
         personTable.refresh();
-
     }
 
     @FXML
@@ -708,7 +623,6 @@ public class Controller {
         }
     }
 
-
     public int ChooseDay() {
         if (month.getValue() != null) {
             switch (month.getValue().toString()) {
@@ -739,5 +653,64 @@ public class Controller {
             }
         }
         return 30;
+    }
+
+    private boolean checkMain(boolean flag){
+        if (date.isVisible()) if (date.getText().length() == 0) flag = false;
+        if (year.isVisible()) if (year.getText().length() == 0) flag = false;
+        if (nameText.isVisible()) if (nameText.getText().length() == 0) flag = false;
+        if (surnameText.isVisible()) if (surnameText.getText().length() == 0) flag = false;
+        if (email.isVisible()) if (email.getText().length() == 0) flag = false;
+        if (house.isVisible()) if (house.getText().length() == 0) flag = false;
+        if (city.isVisible()) if (city.getText().length() == 0) flag = false;
+        if (street.isVisible()) if (street.getText().length() == 0) flag = false;
+        return flag;
+    }
+
+    private boolean checkManager(boolean flag) {
+        if (manSal.isVisible()) if (manSal.getText().length() == 0) flag = false;
+        if (manExp.isVisible()) if (manExp.getText().length() == 0) flag = false;
+        if (bonus.isVisible()) if (bonus.getText().length() == 0) flag = false;
+        if (manEdu.isVisible()) if (manEdu.getValue() == null) flag = false;
+        return flag;
+    }
+
+    private boolean checkStudent(boolean flag) {
+        if (univers.isVisible()) if (univers.getText().length() == 0) flag = false;
+        if (facult.isVisible()) if (facult.getText().length() == 0) flag = false;
+        if (spec.isVisible()) if (spec.getText().length() == 0) flag = false;
+        if (course.isVisible()) if (course.getText().length() == 0) flag = false;
+        if (group.isVisible()) if (group.getText().length() == 0) flag = false;
+        return flag;
+    }
+
+    private boolean checkProgrammer(boolean flag) {
+        if (progSal.isVisible()) if (progSal.getText().length() == 0) flag = false;
+        if (progExp.isVisible()) if (progExp.getText().length() == 0) flag = false;
+        if (progProj.isVisible()) if (progProj.getText().length() == 0) flag = false;
+        if (progEdu.isVisible()) if (progEdu.getValue() == null) flag = false;
+        if (progCat.isVisible()) if (progCat.getValue() == null) flag = false;
+        if (progSkills.isVisible()) if (progSkills.getValue() == null) flag = false;
+        return flag;
+    }
+
+    private boolean checkDesigner(boolean flag) {
+        if (dezSal.isVisible()) if (dezSal.getText().length() == 0) flag = false;
+        if (dezExp.isVisible()) if (dezExp.getText().length() == 0) flag = false;
+        if (dezProj.isVisible()) if (dezProj.getText().length() == 0) flag = false;
+        if (dezEdu.isVisible()) if (dezEdu.getValue() == null) flag = false;
+        if (dezSkills.isVisible()) if (dezSkills.getValue() == null) flag = false;
+        if (dezType.isVisible()) if (dezType.getValue() == null) flag = false;
+        return flag;
+    }
+
+    private boolean checkTester(boolean flag) {
+        if (testSal.isVisible()) if (testSal.getText().length() == 0) flag = false;
+        if (testExp.isVisible()) if (testExp.getText().length() == 0) flag = false;
+        if (testProj.isVisible()) if (testProj.getText().length() == 0) flag = false;
+        if (testEdu.isVisible()) if (testEdu.getValue() == null) flag = false;
+        if (testType.isVisible()) if (testType.getValue() == null) flag = false;
+
+        return flag;
     }
 }
