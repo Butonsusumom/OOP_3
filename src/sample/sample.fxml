@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.ComboBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="774.0" prefWidth="1208.0" style="-fx-background-color: #9F4576;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane fx:id="mainPalen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="774.0" prefWidth="1208.0" style="-fx-background-color: #9F4576;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-       <TableView fx:id="personTable" layoutX="50.0" layoutY="37.0" prefHeight="550.0" prefWidth="512.0">
+       <TableView fx:id="personTable" layoutX="50.0" layoutY="93.0" prefHeight="550.0" prefWidth="512.0">
            <columns>
                <TableColumn fx:id="id" prefWidth="45.0" text="ID" />
                <TableColumn fx:id="name" prefWidth="146.0" text="Name" />
@@ -21,7 +21,7 @@
                <TableColumn fx:id="position" prefWidth="132.0" text="Position" />
            </columns>
        </TableView>
-      <Button fx:id="addButton" layoutX="50.0" layoutY="631.0" mnemonicParsing="false" onAction="#onClickMethodAdd" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Add" textFill="#f5f5f5">
+      <Button fx:id="addButton" layoutX="50.0" layoutY="671.0" mnemonicParsing="false" onAction="#onClickMethodAdd" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Add" textFill="#f5f5f5">
          <font>
             <Font name="Berlin Sans FB" size="18.0" />
          </font>
@@ -29,7 +29,7 @@
             <Reflection />
          </effect>
       </Button>
-      <Button fx:id="deleteButton" layoutX="319.0" layoutY="631.0" mnemonicParsing="false" onAction="#onClickMethodDelete" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Delete" textFill="WHITE">
+      <Button fx:id="deleteButton" layoutX="322.0" layoutY="671.0" mnemonicParsing="false" onAction="#onClickMethodDelete" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Delete" textFill="WHITE">
          <font>
             <Font name="Berlin Sans FB" size="18.0" />
          </font>
@@ -37,7 +37,7 @@
             <Reflection />
          </effect>
       </Button>
-      <Button fx:id="EditButton" layoutX="187.0" layoutY="631.0" mnemonicParsing="false" onAction="#onClickMethodEdit" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Edit" textFill="#f5f3f3">
+      <Button fx:id="EditButton" layoutX="187.0" layoutY="671.0" mnemonicParsing="false" onAction="#onClickMethodEdit" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Edit" textFill="#f5f3f3">
          <font>
             <Font name="Berlin Sans FB" size="18.0" />
          </font>
@@ -533,7 +533,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <Button fx:id="analyseButton" layoutX="452.0" layoutY="631.0" mnemonicParsing="false" onAction="#onClickMethodAnalyse" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Analyse" textFill="WHITE">
+      <Button fx:id="analyseButton" layoutX="452.0" layoutY="671.0" mnemonicParsing="false" onAction="#onClickMethodAnalyse" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Analyse" textFill="WHITE">
          <effect>
             <Reflection />
          </effect>
@@ -547,5 +547,21 @@
             <Button fx:id="close" layoutX="583.0" mnemonicParsing="false" onAction="#Close" prefHeight="27.0" prefWidth="55.0" style="-fx-background-color: BLACK;" text="X" textFill="#f5efef" />
          </children>
       </AnchorPane>
+      <Button fx:id="savebutton" layoutX="50.0" layoutY="21.0" mnemonicParsing="false" onAction="#onClickMethodSave" prefHeight="39.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Save" textFill="#f5f5f5">
+         <effect>
+            <Reflection />
+         </effect>
+         <font>
+            <Font name="Berlin Sans FB" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="loadbutton" layoutX="174.0" layoutY="21.0" mnemonicParsing="false" onAction="#onClickMethodLoad" prefHeight="39.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Load" textFill="#f5f5f5">
+         <effect>
+            <Reflection />
+         </effect>
+         <font>
+            <Font name="Berlin Sans FB" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

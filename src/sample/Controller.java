@@ -1,15 +1,28 @@
 package sample;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import serialization.BinarConverter;
+import serialization.JsonConverter;
+import serialization.TextConverter;
 import tsubulko.entity.*;
 
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -23,9 +36,19 @@ public class Controller {
     @FXML
     private AnchorPane analysePanel;
     @FXML
+    private AnchorPane mainpanel;
+    @FXML
     private Button submitButton1;
     @FXML
     private Button submitButton2;
+    @FXML
+    private Button savebutton;
+    @FXML
+    private Button loadbutton;
+    @FXML
+    private ComboBox saveBox;
+    @FXML
+    private ComboBox loadBox;
     @FXML
     private Label pos;
     @FXML
@@ -105,8 +128,77 @@ public class Controller {
     int idPerson = 0;
     int idEdit = -1;
 
+
     //-------------------------------GUI METHODS-------------------------------------
     public Controller() {
+    }
+
+
+    @FXML
+    public void onClickMethodSave() throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Text Files", "*.txt","*.csv"),
+                new FileChooser.ExtensionFilter("Binar Files", "*.dat"),
+                new FileChooser.ExtensionFilter("JSON Files", "*.json"));
+        File selectedFile = fileChooser.showSaveDialog(new Stage());
+        if (selectedFile != null) {
+            String name = selectedFile.getPath();
+            String[] split = name.split("\\.");
+            String ext = split[split.length - 1];
+            System.out.println(name);
+            System.out.println(ext);
+            switch (ext) {
+                case ("json"):
+                    JsonConverter conv = new JsonConverter();
+                    conv.serialise(personData, name);
+                    break;
+                case ("dat"):
+                    BinarConverter binar = new BinarConverter();
+                    binar.serialise(personData, name);
+                    break;
+                case ("csv"):
+                case ("txt"):
+                    TextConverter tex = new TextConverter();
+                    tex.serialise(personData, name);
+                    break;
+            }
+        }
+    }
+
+    @FXML
+    public void onClickMethodLoad() throws Exception {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Text Files", "*.txt","*.csv"),
+                new FileChooser.ExtensionFilter("Binar Files", "*.dat"),
+                new FileChooser.ExtensionFilter("JSON Files", "*.json"));
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+        if (selectedFile != null) {
+            String name = selectedFile.getPath();
+            String[] split = name.split("\\.");
+            String ext = split[split.length - 1];
+            System.out.println(name);
+            System.out.println(ext);
+            switch (ext) {
+                case ("json"):
+                    JsonConverter conv = new JsonConverter();
+                    personData = conv.deserialise(name);
+                    break;
+                case ("dat"):
+                    BinarConverter binar = new BinarConverter();
+                    personData = binar.deserialise(name);
+                    break;
+                case ("csv"):
+                case ("txt"):
+                    TextConverter text = new TextConverter();
+                    personData = text.deserialise(name);
+                    break;
+            }
+            personTable.setItems(personData);
+        }
     }
 
     @FXML
@@ -264,7 +356,7 @@ public class Controller {
     }
 
     @FXML
-    public void onClickMethodSub1() {
+    public void onClickMethodSub1() throws IOException {
         boolean flag = true;
         flag=checkMain(flag);
         Person pers = null;
@@ -304,8 +396,8 @@ public class Controller {
 
             if (flag) {
                 addPanel.setVisible(false);
-                personData.add(pers);
-                personTable.getItems().add(pers);
+               // personData.add(pers);
+               personTable.getItems().add(pers);
             }
             else {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input");

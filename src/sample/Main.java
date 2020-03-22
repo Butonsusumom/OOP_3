@@ -1,23 +1,21 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Side;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import tsubulko.entity.Adress;
-import tsubulko.entity.Person;
-import tsubulko.entity.Student;
-import tsubulko.services.Director;
-import tsubulko.services.PersonList;
+
 
 import javax.swing.text.TableView;
+import java.io.File;
 import java.util.Date;
 
 public class Main extends Application {
+    public Stage primaryStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -25,6 +23,8 @@ public class Main extends Application {
         primaryStage.setTitle("Firm");
         primaryStage.setScene(new Scene(root, 1208, 774));
         primaryStage.show();
+
+
     }
 
 

@@ -1,13 +1,26 @@
 package tsubulko.entity;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.ToString;
 import tsubulko.entity.Employee;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 
 @Data
-abstract class Engineer extends Employee {
+/*@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Programmer.class, name = "programmer"),
+        @JsonSubTypes.Type(value = Designer.class, name = "tsubulko.entity.Designer"),
+        @JsonSubTypes.Type(value = Tester.class, name = "tester")
+})*/
+abstract  class  Engineer extends Employee implements Serializable {
    // private Project project;
    private String project;
 
@@ -18,5 +31,12 @@ abstract class Engineer extends Employee {
 
 
     public Engineer() {
+    }
+
+    @Override
+    public String toString() {
+        return "Engineer{" +
+                "project='" + project + '\'' +
+                "} " + super.toString();
     }
 }
